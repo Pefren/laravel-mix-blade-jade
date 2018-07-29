@@ -126,7 +126,8 @@ class MixJadeTask extends Task {
 
     prepareAssets(src) {
         let file = new File(src);
-        let folder = file.filePath.replace(this.src, '').replace(file.name(), '');
+        let input = this.src.replace(/\//g, '\\');
+        let folder = file.filePath.replace(input, '').replace(file.name(), '');
         let output = path.join(this.dest, folder, file.nameWithoutExtension() + '.blade.php');
         let asset = new File(output);
         Mix.addAsset(asset);
